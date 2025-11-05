@@ -1,0 +1,33 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="faviconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4f46e5;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Фон с градиентом и скругленными углами -->
+  <rect width="32" height="32" rx="8" fill="url(#faviconGradient)"/>
+  
+  <!-- Упрощенная иконка автомобиля для лучшей видимости в маленьком размере -->
+  <g transform="translate(4, 10)">
+    <!-- Кузов автомобиля (упрощенная форма) -->
+    <path d="M2 8 L2 5 L5 5 L7 2 L17 2 L19 5 L22 5 L22 8 L20 8 L20 11 L4 11 L4 8 Z" 
+          fill="white" 
+          stroke="white" 
+          stroke-width="1.2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+    
+    <!-- Переднее окно -->
+    <rect x="6" y="5" width="5" height="3" fill="white" opacity="0.5" rx="0.5"/>
+    
+    <!-- Заднее окно -->
+    <rect x="13" y="5" width="5" height="3" fill="white" opacity="0.5" rx="0.5"/>
+    
+    <!-- Колеса -->
+    <circle cx="6" cy="11" r="2.5" fill="white" opacity="0.9"/>
+    <circle cx="18" cy="11" r="2.5" fill="white" opacity="0.9"/>
+  </g>
+</svg>
+
