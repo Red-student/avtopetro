@@ -1,11 +1,8 @@
-"use client"
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header";
 import { Providers } from "./providers/provider";
-import { HeroUIProvider } from "@heroui/system";
 import { Metadata } from "next";
-
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,10 +14,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-/*export const metadata: Metadata = {
+export const metadata: Metadata = {
   title: "AvtoPetro",
   description: "A good car lasts a long time.",
-};*/
+};
 
 export default function RootLayout({
   children,
@@ -32,13 +29,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <HeroUIProvider>
-          <Providers>
-          <Header  />
+        <Providers>
+          <Header />
           {children}
-          </Providers>
-        </HeroUIProvider>
-        
+        </Providers>
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
 "use client"
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@heroui/react";
+import { usePathname } from "next/navigation";
 
 export const AcmeLogo = () => {
   return (
@@ -44,7 +45,17 @@ export const AcmeLogo = () => {
   );
 };
 
+// Конфигурация навигационных элементов
+const navItems = [
+  { href: "/cars", label: "Автомобили" },
+  { href: "/services", label: "Услуги" },
+  { href: "/about", label: "О нас" },
+  { href: "/contacts", label: "Контакты" }
+];
+
 export default function Header() {
+  const pathname = usePathname();
+  
   return (
     <Navbar 
       className="border-b border-gray-200/50 dark:border-gray-800/50 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 shadow-sm"
@@ -56,43 +67,31 @@ export default function Header() {
       </NavbarBrand>
       
       <NavbarContent className="hidden sm:flex gap-6" justify="center">
-        <NavbarItem>
-          <Link 
-            href="#"
-            className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-200 relative group"
-          >
-            Услуги
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 group-hover:w-full transition-all duration-300"></span>
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link 
-            aria-current="page" 
-            href="#"
-            className="text-blue-600 dark:text-blue-400 font-semibold relative group"
-          >
-            Автомобили
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600"></span>
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link 
-            href="#"
-            className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-200 relative group"
-          >
-            О нас
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 group-hover:w-full transition-all duration-300"></span>
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link 
-            href="#"
-            className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-200 relative group"
-          >
-            Контакты
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 group-hover:w-full transition-all duration-300"></span>
-          </Link>
-        </NavbarItem>
+        {navItems.map((item) => {
+          const isActive = pathname === item.href || (pathname === "/" && item.href === "/cars");
+          return (
+            <NavbarItem key={item.href} isActive={isActive}>
+              <Link 
+                href={item.href}
+                aria-current={isActive ? "page" : undefined}
+                className={`${
+                  isActive 
+                    ? "text-blue-600 dark:text-blue-400 font-semibold" 
+                    : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium"
+                } transition-colors duration-200 relative group`}
+              >
+                {item.label}
+                <span 
+                  className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 ${
+                    isActive 
+                      ? "w-full" 
+                      : "w-0 group-hover:w-full transition-all duration-300"
+                  }`}
+                ></span>
+              </Link>
+            </NavbarItem>
+          );
+        })}
       </NavbarContent>
       
       <NavbarContent justify="end" className="gap-3">
